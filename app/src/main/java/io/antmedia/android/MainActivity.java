@@ -3,6 +3,7 @@ package io.antmedia.android;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import io.antmedia.android.liveVideoBroadcaster.*;
@@ -12,13 +13,23 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * PLEASE WRITE RTMP BASE URL of the your RTMP SERVER.
+     *
      */
-    public static final String RTMP_BASE_URL = "rtmp://10.10.31.87/LiveApp/";
+
+    public static String IP_ADD="" ;
+
+    public static  String RTMP_BASE_URL = "rtmp://"+IP_ADD+"/LiveApp/";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(io.antmedia.android.liveVideoBroadcaster.R.layout.activity_main);
+        Intent intent =getIntent();
+       IP_ADD= intent.getStringExtra("ip_address");
+        RTMP_BASE_URL = "rtmp://"+IP_ADD+"/LiveApp/";
+
+
     }
 
     public void openVideoBroadcaster(View view) {
